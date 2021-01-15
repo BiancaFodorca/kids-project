@@ -1,0 +1,24 @@
+.background-list {
+    background-color: #4D3976;
+}
+
+.download-cls {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.delete-cls {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.delete-cls:hover{
+    color: black;
+}
+
+
+.download-cls:hover{
+    color: black;
+}

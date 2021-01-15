@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title" *ngIf="editWordFlag">Adaugare cuvant</h4>
+    <h4 class="modal-title" *ngIf="!editWordFlag">Editare cuvant</h4>
+    <button type="button" class="close" aria-label="Close"
+           (click)="activeModal.dismiss('Cross click')">
+           x
+    </button>
+</div>
+<div class="modal-body">
+      <form [formGroup]="wordForm" >
+          <div class="form-group">
+              <label for="word"> Cuvant: </label>
+              <input id="word" type="text" class="form-control" formControlName="word">
+          </div>
+          <div class="form-group">
+              <label for="definition"> Definitie: </label>
+              <textarea id="definition" rows="" type="text" class="form-control" formControlName="definition"></textarea>
+          </div>
+       </form>   
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" *ngIf="editWordFlag" (click)="saveNewWord()"> Salveaza</button>
+    <button class="btn btn-primary" *ngIf="!editWordFlag" (click)="editExistingWord()">Editeaza</button>
+    <button class="btn btn-secondary" (click)="activeModal.dismiss('Close clicked')">
+      Renunta
+    </button>
+</div>

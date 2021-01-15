@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html{
+    background: url('assets/images/pencil4.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container-form {
+    background-color: rgb(245, 245, 194);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid yellow;
+}
+
+
+
+  .content-box {
+    background-color: #EAE8EB;
+    padding-top: 20px;
+    padding-left: 20px;
+  }
+
+  .separation-line {
+    border-left: 3px solid black;
+  }
+
+  .rounded-image{
+    border-radius: 50%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

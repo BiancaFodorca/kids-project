@@ -1,0 +1,161 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Aplicatia 2</i></h3>
+    <hr>
+    <div class="row" *ngIf="noSelectedBook">
+        <app-no-book-selected></app-no-book-selected>
+    </div>
+    <div class="row" *ngIf="!noSelectedBook">
+      <div class="col-12">
+        <h5><i>
+          <span class="fa fa-question-circle" ></span>
+          {{question.text}}
+        </i></h5>
+        <div class="row mt-2">
+            <div class="col-2">
+                <span class="badge badge-pill badge-primary"><h6>Entuziasm:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+              <div class="row">
+                    <div *ngFor="let grade of gradesList">
+                        <input type="radio" name="radio1"
+                           [checked]="idx === 0" 
+                           [value]="grade" 
+                          (change)="onSelectionGratefulChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+              </div>
+            </div>
+            <div class="col-2">
+                <i class="facecolorred fa fa-smile-o" *ngIf="gratefulGrade > 5"></i>
+                <i class="facecolorblue fa fa-frown-o" *ngIf= "5 > gratefulGrade"></i>
+                <i class="facecoloryellow fa fa-meh-o" *ngIf="gratefulGrade === 5"></i>
+            </div>
+          </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <span class="badge badge-pill badge-warning"><h6>Neliniste:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+              <div class="row">
+                    <div *ngFor="let grade of gradesList">
+                        <input type="radio" name="radio2"
+                           [checked]="idx === 0" 
+                           [value]="grade" 
+                          (change)="onSelectionWorryChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+  
+                
+              </div>
+            </div>
+            <div class="col-2">
+                <i class="facecolorred fa fa-smile-o" *ngIf="5 > worryGrade"></i>
+                <i class="facecolorblue fa fa-frown-o" *ngIf= "worryGrade > 5"></i>
+                <i class="facecoloryellow fa fa-meh-o" *ngIf="worryGrade === 5"></i>
+            </div>
+          </div>
+        <div class="row mt-2">
+            <div class="col-2">
+                <span class="badge badge-pill badge-success"><h6>Optimism:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-6">
+              <div class="row">
+                  <div *ngFor="let grade of gradesList">
+                      <input type="radio" name="radio3"
+                         [checked]="idx === 0" 
+                         [value]="grade" 
+                        (change)="onSelectionOptimismChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+              </div>
+            </div>
+            <div class="col-2">
+                <i class="facecolorred fa fa-smile-o" *ngIf="optimismGrade > 5"></i>
+                <i class="facecolorblue fa fa-frown-o" *ngIf= "5 > optimismGrade"></i>
+                <i class="facecoloryellow fa fa-meh-o" *ngIf="optimismGrade === 5"></i>
+            </div>
+          </div>
+          <div class="row mt-2">
+              <div class="col-2">
+                  <span class="badge badge-pill badge-dark"><h6>Deprimare:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="col-6">
+                <div class="row">
+                    <div *ngFor="let grade of gradesList">
+                        <input type="radio" name="radio4"
+                           [checked]="idx === 0" 
+                           [value]="grade" 
+                          (change)="onSelectionSadnessChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+              </div>
+              <div class="col-2">
+                  <i class="facecolorred fa fa-smile-o" *ngIf="5 > sadnessGrade"></i>
+                  <i class="facecolorblue fa fa-frown-o" *ngIf= "sadnessGrade > 5"></i>
+                  <i class="facecoloryellow fa fa-meh-o" *ngIf="sadnessGrade === 5"></i>
+              </div>
+              
+            </div>
+            <div class="row mt-2">
+                <div class="col-2">
+                    <span class="badge badge-pill badge-light"><h6>Compasiune:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="col-6">
+                  <div class="row">
+                      <div *ngFor="let grade of gradesList">
+                          <input type="radio" name="radio5"
+                             [checked]="idx === 0" 
+                             [value]="grade" 
+                            (change)="onSelectionCompassionChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                      </div>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <i class="facecolorred fa fa-smile-o" *ngIf="compassionGrade > 5"></i>
+                  <i class="facecolorblue fa fa-frown-o" *ngIf= "5 > compassionGrade"></i>
+                  <i class="facecoloryellow fa fa-meh-o" *ngIf="compassionGrade === 5"></i>
+                </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-2">
+                      <span class="badge badge-pill badge-danger"><h6>Atasament:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                  </div>
+                  <div class="col-6">
+                    <div class="row">
+                        <div *ngFor="let grade of gradesList">
+                            <input type="radio" name="radio6"
+                               [checked]="idx === 0" 
+                               [value]="grade" 
+                              (change)="onSelectionLoveChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                      <i class="facecolorred fa fa-smile-o" *ngIf="loveGrade > 5"></i>
+                      <i class="facecolorblue fa fa-frown-o" *ngIf= "5 > loveGrade"></i>
+                      <i class="facecoloryellow fa fa-meh-o" *ngIf="loveGrade === 5"></i>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2">
+                        <span class="badge badge-pill badge-secondary"><h6>Frustrare:</h6></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="col-6">
+                      <div class="row">
+                          <div *ngFor="let grade of gradesList">
+                              <input type="radio" name="radio7"
+                                 [checked]="idx === 0" 
+                                 [value]="grade" 
+                                (change)="onSelectionFrustrationChange(grade)"><b>{{grade}}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-2">
+                        <i class="facecolorred fa fa-smile-o" *ngIf="5 > frustrationGrade"></i>
+                        <i class="facecolorblue fa fa-frown-o" *ngIf= "frustrationGrade > 5"></i>
+                        <i class="facecoloryellow fa fa-meh-o" *ngIf="frustrationGrade === 5"></i>
+                    </div>
+                  </div>
+      </div>
+
+    </div>
+    <button class="btn btn-primary float-right mr-3" *ngIf="!noSelectedBook" (click)="showGraphic()">Vizualizeaza grafic</button>
+  </div>
+  <simple-notifications></simple-notifications>

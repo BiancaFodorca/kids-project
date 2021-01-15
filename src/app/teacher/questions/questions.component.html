@@ -1,0 +1,29 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Formulare cerinte</i></h3>
+    <hr>
+  <div class="row">
+    <div class="col-lg-6">
+        <div *ngFor="let question of questions; let i=index">
+            <div class="row" >
+              <div class="col-12" >
+                  <h5 class="text-shadow"><i class="fa fa-question-circle"></i>  Intrebarea {{question.exerciseNumber}}</h5>
+                  <div class="alert alert-primary" role="alert">
+                      <i>{{question.question}}</i>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="editQuestion(question)">
+                          <i class="fa fa-pencil"></i>
+                        </button>
+                  </div>
+              </div>
+            </div>
+              
+            </div>
+    </div>
+    <div class="col-5 separation-line" *ngIf="showEditQuestionTextarea">
+        <h5 class="text-shadow"> Modificare cerinta pentru <i>Intrebarea {{selectedQuestion.exerciseNumber}}</i> </h5>
+        <textarea class="form-control" [(ngModel)]="editedSelectedQuestion" rows="8" cols="50"></textarea>
+        <button (click)="saveEditedQuestion()" class="btn btn-primary mt-3"><i class="fa fa-save"></i> Salveaza</button>
+        <button (click)="cancelEditingAction()" class="btn btn-secondary mt-3"><i class="fa fa-times"></i> Renunta</button>
+    </div>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

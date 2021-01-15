@@ -1,0 +1,13 @@
+<div class="menu">
+  <ul>
+    <li><a class="active" [routerLink]="['/dashboard']"><strong>
+      <i class="fa fa-user fa-yellow"></i>
+      Informatii profesor</strong></a></li>
+    <li><a [routerLink]="['/upload']"><strong>Capitol curent</strong></a></li>
+    <li><a [routerLink]="['/questions']"><strong>Cerinte</strong></a></li>
+    <!-- <li><a [routerLink]="['/statistics']"><strong>Evaluare elevi</strong></a></li> -->
+    <li><a [routerLink]="['/dictionary']"><strong>Vizualizare dictionar</strong></a></li>
+    <li><a [routerLink]="['/newaccount']"><strong>Creare cont nou</strong></a></li>
+    <li class="float-right"><a (click)="logout()"><strong>Logout</strong></a></li>
+  </ul>
+</div>

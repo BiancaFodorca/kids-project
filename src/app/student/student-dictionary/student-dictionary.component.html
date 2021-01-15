@@ -1,0 +1,47 @@
+<div class="content-box">
+  <h3 style="text-align:center"><i>Aplicatia 3</i></h3>
+  <hr>
+  <div class="row" *ngIf="noSelectedBook">
+      <app-no-book-selected></app-no-book-selected>
+  </div>
+  <div class="row opac-box" *ngIf="!noSelectedBook">
+    <h3>
+     <span class="badge badge-pill badge-info button-badge" (click)="getWords()">&nbsp;Toate cuvintele&nbsp;</span> &nbsp;
+    </h3> 
+    <h3 *ngFor="let letter of alphabet; let i=index;">
+          <span class="badge badge-pill badge-info button-badge" (click)="selectLetterForSpecificWords(letter)">&nbsp;{{letter}}&nbsp;</span> &nbsp;
+    </h3> <!--[style.backgroundColor]="getRandomColor()" -->
+  </div>
+  <hr>
+  <div class="row" *ngIf="!noSelectedBook">
+    <div class="col-3">
+      <input type="search" class="form-control" placeholder="Cauta cuvantul..." [(ngModel)]="searchedWord" (keyup.enter)="searchWord()">
+    </div>
+    <div class="list-group col-6">
+              <div class="list-group-item" *ngFor="let w of wordsList; let i=index;">
+                <div class="row">
+                   <div class="col-11">
+                         <h4 class="list-group-item-heading"><i>{{w.word}}</i></h4>
+                   
+                <p class="list-group-item-text">{{w.definition}}</p>
+                   </div>
+                   <!-- <div class="col-1">
+                         <div class="float-right">
+                           <h4> <i class="fa fa-pencil button-badge" (click)="openFormModal(w)"></i></h4>
+                            <br>
+                            <h4><i class="fa fa-trash float-right button-badge" (click)="openDeleteWordModal(w)"></i></h4>
+                         </div>
+                         </div> -->
+                   </div>
+                
+              </div>
+    </div>
+  <div class="col-3">
+      <div class="row">
+              <button class="btn btn-warning" (click)="openFormModal(null)">Adauga cuvant</button>
+      </div>
+
+  </div>
+</div>
+</div>
+<simple-notifications></simple-notifications>

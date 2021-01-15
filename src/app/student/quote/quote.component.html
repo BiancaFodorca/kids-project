@@ -1,0 +1,43 @@
+<div class="content-box">
+  <h3 style="text-align:center"><i>Aplicatia 1</i></h3>
+  <hr>
+  <div class="row" *ngIf="noSelectedBook">
+      <app-no-book-selected></app-no-book-selected>
+  </div>
+  <div class="row" *ngIf="!noSelectedBook">
+    <div class="col-5">
+      <p class="text1"><span class="fa fa-book"></span> <i>Copiii, cinstea parintilor; parintii, lauda copiilor.</i></p>
+      <p class="text2"><span class="fa fa-book"></span> <i>Prietenul la nevoie se cunoaste!</i></p>
+      <p class="text3"><span class="fa fa-book"></span> <i>Cand muncesti nu te plictisesti.</i></p>
+      <p class="text4"><span class="fa fa-book"></span> <i>Ce poti face singur, nu astepta de la altii</i></p>
+      <p class="text5"><span class="fa fa-book"></span> <i>Bine faci, bine gasesti.</i></p>
+      <p class="text6"><span class="fa fa-book"></span> <i>Minciuna se grabeste, iar adevarul astepta!</i></p>
+      <p class="text7"><span class="fa fa-book"></span> <i>Vorba multa, saracia omului.</i></p>
+      <p class="text8"><span class="fa fa-book"></span> <i>Nu musca mana care te-a hranit.</i></p>
+      <p class="text9"><span class="fa fa-book"></span> <i>Buturuga mica rastoarna carul mare.</i></p>
+      <p class="text10"><span class="fa fa-book"></span> <i>Cine se scoala de dimineata departe ajunge.</i></p>
+    </div>
+    <div class="col-6">
+      <h5><i>
+        <span class="fa fa-question-circle" ></span>
+        {{question.text}}
+      </i></h5>
+      <small>*Puteti sa va documentati de pe internet, din carti sau de la biblioteca</small>
+      <br>
+      <div class="row">
+        <div class="col-10">
+            <textarea [(ngModel)]="quote" cols="70" rows="8"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+            <button class="btn btn-primary" (click)="createQuote()">Salveaza</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+ </div>
+ <simple-notifications></simple-notifications>

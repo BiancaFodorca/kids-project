@@ -1,0 +1,45 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Incarcare capitol curent</i></h3>
+    <hr>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="file"><strong>Incarca un nou capitol:</strong></label><br>
+        <input type="file"
+               id="file"
+               (change)="handleFileInput($event.target.files)">
+      </div>
+      <div class="form-group">
+        <label for="file"><strong>Denumire capitol:</strong></label><br>
+        <input type="text" [(ngModel)]="name" class="form-control">
+      </div>
+      <hr>
+      <button class="btn btn-primary" (click)="uploadSelectedFile()" [disabled]="!fileToUpload" *ngIf="!displayMoreInputs">Incarca fisierul incarcat </button>
+  <button class="btn btn-warning" (click)="uploadMoreFiles()" [disabled]="!fileToUpload">Adauga fisiere suplimentare </button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-success col-8 mb-3" (click)="getAllUploadedFiles('carte')">Vizualizeaza istoricul capitolelor incarcate</button>
+      <button class="btn btn-info col-8" (click)="getAllUploadedFiles('atasament')">Vizualizeaza istoricul atasamentelor incarcate</button>
+      <div class="mt-3 row" *ngIf="typeSelected">
+          <div class="col-8">
+              <ul class="list-group">
+                  <li class="list-group-item active background-list"><i class='fa fa-book'></i>&nbsp; {{typeSelected}} incarcate</li>
+                  <li class="list-group-item" *ngFor="let book of pastFilesList">{{book.fileName}} - <span class="download-cls" (click)='downloadSelectedBook(book.fileName)'>Descarca</span> | <span class="delete-cls" (click)="deleteSelectedBook(book.fileName)">Sterge</span></li>
+                </ul>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6" *ngIf="displayMoreInputs">
+      <br>
+     <input type="file"  id="file" (change)="handleSuplimentedFileInput($event.target.files)">
+     <input type="file" id="file" (change)="handleSuplimentedFileInput($event.target.files)">
+     <input type="file" id="file" (change)="handleSuplimentedFileInput($event.target.files)">
+     <input type="file" id="file" (change)="handleSuplimentedFileInput($event.target.files)" class="mb-3">
+     <br>
+     <button *ngIf="displayMoreInputs" class="btn btn-primary mt-3" (click)="uploadSelectedFiles()">Incarca fisierele suplimentare </button>
+  </div>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

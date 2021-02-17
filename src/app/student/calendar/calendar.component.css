@@ -1,0 +1,89 @@
+.opac-box {
+    opacity: 0.7;
+    background-color: rgba(255,255,255, 0.5)
+}
+
+.seasonCard, .monthCard, .dayCard {
+    border: 2px solid white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.seasonCard:hover, .monthCard:hover, .dayCard:hover, .dayOfWeekCard:hover, .weatherCard:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.seasonCard:active, .monthCard:active, .dayCard:active, .dayOfWeekCard:active, .weatherCard:active {
+    opacity: 0.5;
+    border: 4px dotted purple;
+    cursor: pointer;
+}
+
+.monthCard {
+    margin-bottom: 4px;
+    padding: 4px 0;
+    color: white;
+}
+
+.monthIcon {
+    display: inline;
+}
+
+.monthColoredCard-0 {
+    background-color: lightgreen;
+}
+
+.monthColoredCard-1 {
+    background-color: #a2c761;
+}
+
+.monthColoredCard-2 {
+    background-color: lightgray;
+}
+
+.dayCard {
+    background-color: coral;
+    color: white;
+    padding: 10px;
+    display: inline;
+    margin: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.dayOfWeekCard {
+    background-color: #C4ABD6;
+    border: 2px solid white;
+    border-bottom: 4px solid pink;
+    border-radius: 10px;
+    color:white;
+    padding: 10px 0;
+    margin: 4px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.dayOfWeekColored-1 {
+    color: olive;
+}
+
+.dayOfWeekColored-2 {
+    color: purple;
+}
+
+.weatherContainer {
+    display: inline-block;
+}
+
+.weatherCard {
+    display: block;
+    border: 2px solid white;
+    border-radius: 6px;
+    text-align: center;
+    margin: 8px auto;
+}
+
+.weatherContainer {
+    text-align: center;
+}

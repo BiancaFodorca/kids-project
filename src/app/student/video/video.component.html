@@ -1,0 +1,28 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Noutatea zilei</i></h3>
+    <hr>
+    <div class="row" *ngIf="noSelectedBook">
+      <div class="col-lg-8 col-sm-12">
+        <h5><i>
+          <span class="fa fa-question-circle" ></span>
+          {{question.text}}
+        </i></h5>
+        <div class="row">
+            <div class="col-10">
+              <iframe class="videoBorder" width="800vw" height="480vw"
+              [src]="videoUrl | safe">
+              </iframe>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <button class="btn btn-secondary" title="{{info}}"><i class="fa fa-question-circle"></i></button>
+            </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <img class="photo" class="newsForToday" src="./././assets/images/read.jpg" alt="Profesor"/>
+    </div>
+    </div>
+  </div>
+  <simple-notifications></simple-notifications>

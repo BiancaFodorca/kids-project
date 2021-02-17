@@ -1,7 +1,13 @@
 <div class="container text-center">
       <div class="d-flex justify-content-center">
-          <div class="col-lg-9 container-form">
-              <form [formGroup]="login_Form" (ngSubmit)="doLogin(login_Form.value)">   
+          <div class="col-lg-3">
+            <img src="../../../assets/images/kids1-rotate.png" />
+          </div>
+          <div class="col-lg-9 col-sm-9 container-form">
+              <br>
+              <h1>Bine ai venit in lumea celor mici!</h1>
+              <hr>
+              <form class="loginForm" [formGroup]="login_Form" (ngSubmit)="doLogin(login_Form.value)">   
                       <div class="form-group">
                           <input class="form-control" type="email" id="email" [formControl]="login_Form.controls['email']" placeholder="Adresa email" required>
                       </div>
@@ -12,7 +18,11 @@
                       <button class="btn btn-primary" type="submit" [disabled]="!login_Form.valid">Log In</button>
               </form>
           </div>
+          <div class="col-lg-3">
+            <img src="../../../assets/images/kids1.png" />
+          </div>
       </div>
+
 </div>
 
 

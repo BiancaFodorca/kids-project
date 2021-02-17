@@ -1,0 +1,8 @@
+.coloredText {
+    color: red;
+    text-transform: lowercase;
+}
+
+.customText {
+    text-transform: lowercase;
+}

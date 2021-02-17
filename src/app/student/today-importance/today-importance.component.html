@@ -1,0 +1,50 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Astazi este despre... </i></h3>
+    <hr>
+    <div class="row">
+      <div class="col-6">
+          <div class="row titleContainer">
+            <span class="col-2">
+              <img class="littlePhoto" src="./././assets/images/kids9.png" alt="Profesor"/>
+            </span>
+            <span class="col-6">
+              <b>{{infoForToday.title}}</b>
+            </span>
+          </div>
+          <div class="row photoContainer">
+            <img class="photo" [src]="infoForToday.image" alt="Profesor"/>
+            <img class="balloonPhoto" src="./././assets/images/kids13.png" alt="Profesor"/>
+           </div>
+      </div>
+      <div class="col-6">
+        <img class="garlands" src="./././assets/images/kids17.png" alt="Today is all about"/>
+        <h3 class="description_{{ infoForToday.type}}">{{infoForToday.description}}</h3>
+        <div class="row photoTypeContainer" *ngIf="infoForToday.type === 'GENERIC_EVENT'">
+          <img class="roundedPhoto photoType" src="./././assets/images/kids16.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids21.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids23.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids24.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids7.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids19.png" alt="Today is all about"/>
+        </div>
+        <div class="row photoTypeContainer" *ngIf="infoForToday.type === 'GIRL_BDAY'">
+          <img class="roundedPhoto photoType" src="./././assets/images/kids14.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids25.gif" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids20.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids26.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids28.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids29.png" alt="Today is all about"/>
+
+        </div>
+        <div class="row photoTypeContainer" *ngIf="infoForToday.type === 'BOY_BDAY'">
+          <img class="roundedPhoto photoType" src="./././assets/images/kids22.jpg" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids30.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids31.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids33.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids32.png" alt="Today is all about"/>
+          <img class="photoType" src="./././assets/images/kids35.png" alt="Today is all about"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <simple-notifications></simple-notifications>

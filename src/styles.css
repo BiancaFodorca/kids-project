@@ -2,7 +2,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 html{
-    background: url('assets/images/pencil4.jpg') no-repeat center center fixed;
+  background-color: #FBF0AC;
+    /* background: url('assets/images/kids.jpg') no-repeat center center fixed; */
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -10,17 +11,15 @@ html{
     background-attachment: fixed;
 }
 
-.container-form {
+/* .container-form {
     background-color: rgb(245, 245, 194);
     padding: 20px;
     border-radius: 10px;
     border: 2px solid yellow;
-}
-
-
+} */
 
   .content-box {
-    background-color: #EAE8EB;
+    background-color: #FBF0AC;
     padding-top: 20px;
     padding-left: 20px;
   }

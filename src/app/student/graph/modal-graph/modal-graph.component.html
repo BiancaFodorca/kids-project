@@ -1,12 +1,25 @@
 <div class="modal-header">
-    <h4 class="modal-title">Vizualizare grafic sentimente</h4>
+    <h4 class="modal-title">Vizualizare prezenta copilasi in functie de sentimente</h4>
     <button type="button" class="close" aria-label="Close"
            (click)="activeModal.dismiss('Cross click')">
            x
     </button>
 </div>
 <div class="modal-body">
-    <canvas #myCanvas width="500" height="300"></canvas>
+    <div class="row" *ngFor="let emotion of emotions; let i=index;">
+        <div clas="col-4 ml-3">
+            <img *ngIf="emotion.type === 'happiness'" class="image float-right" src="././././assets/images/kids4.png" alt="Avatar" style="width:20px;height:15px;">
+            <img *ngIf="emotion.type === 'sadness'" class="image float-right" src="././././assets/images/kids4.png" alt="Avatar" style="width:20px;height:15px;">
+            <img *ngIf="emotion.type === 'neutral'" class="image float-right" src="././././assets/images/kids4.png" alt="Avatar" style="width:20px;height:15px;">
+            <img *ngIf="emotion.type === 'absent'" class="image float-right" src="././././assets/images/monkey-eyes2.gif" alt="Avatar" style="width:60px;height:50px;">
+        </div>
+        <div class="col-8 customText" *ngIf="emotion.type !== 'absent'">
+            <h5><i>{{emotion.numberOfKids}}</i> copilasi {{emotion.title}}</h5>
+        </div>
+        <div class="col-8 coloredText" *ngIf="emotion.type === 'absent'">
+            <h3><i>{{emotion.numberOfKids}}</i> copilasi {{emotion.title}}</h3>
+        </div>
+    </div>
 
 </div>
 <div class="modal-footer">

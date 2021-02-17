@@ -1,0 +1,28 @@
+<div class="content-box">
+  <h3 style="text-align:center"><i>Ghicitoare</i></h3>
+  <hr>
+  <div class="row">
+    <div class="col-6">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="./././assets/images/question1.gif" alt="Avatar" style="height:400px;">
+          </div>
+          <div class="flip-card-back">
+            <img [src]="riddle.imageUrl" alt="Avatar" style="width:300px;height:400px;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h5><i>
+          <span class="fa fa-question-circle" ></span>
+          {{question.text}}
+        </i></h5>
+      <hr>
+      <h1><i class="riddle">{{riddle.text}}</i></h1>
+      <img class="image float-right" src="./././assets/images/thinker.png" alt="Avatar" style="width:300px;height:250px;">
+  </div>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

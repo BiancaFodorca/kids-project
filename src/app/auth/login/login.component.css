@@ -1,0 +1,11 @@
+.container-form {
+   background-color: #D5E6B0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid#FCB982;
+    vertical-align: bottom;
+}
+
+.loginForm{
+    margin-top: 15%;
+}

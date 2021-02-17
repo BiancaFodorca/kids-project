@@ -12,19 +12,37 @@ import { QuestionService } from '../../shared/services/questions/question.servic
   styleUrls: ['./graph.component.css']
 })
 export class GraphComponent implements OnInit {
-  gradesList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   question = {
     text:
-      'Oferiti note pe o scara de la 0 la 10 in functie de emotiile pe care le-ati simtit in momentul in care ati lecturat capitolul.'
+      'Cum ne simtim astazi?'
   };
-  gratefulGrade;
-  optimismGrade;
-  worryGrade;
-  sadnessGrade;
-  compassionGrade;
-  loveGrade;
-  frustrationGrade;
-  emotionsArray = [];
+  feelingsArray = [
+    {
+      feelingTitle: "Bucurosi",
+      feelingImgUrl: "./././assets/images/monkey-ears2.gif",
+      type: "happiness"
+    },
+    {
+      feelingTitle: "Dezamagiti",
+      feelingImgUrl: "./././assets/images/monkey-sad2.gif",
+      type: "sadness"
+    },
+    {
+      feelingTitle: "Uimiti",
+      feelingImgUrl: "./././assets/images/monkey-mounth2.gif",
+      type: "neutral"
+    }
+  ];
+  feelingsNumberOfKids = {
+    firstFeelingNumberOfKids: null,
+    secondFeelingNumberOfKids: null,
+    thirdFeelingNumberOfKids: null,
+    absentNumberOfKids: null
+  };
+  modalFeelingsArray = [];
+  showWrongMathFlag = false;
+  totalNumberOfKids = 18;
+  partialNumberOfKids = 0;
   bookId;
   noSelectedBook = true;
   options = {
@@ -64,89 +82,72 @@ export class GraphComponent implements OnInit {
       });
   }
 
-  onSelectionGratefulChange(grade) {
-    this.gratefulGrade = grade;
-  }
-
-  onSelectionWorryChange(grade) {
-    this.worryGrade = grade;
-  }
-
-  onSelectionOptimismChange(grade) {
-    this.optimismGrade = grade;
-  }
-
-  onSelectionSadnessChange(grade) {
-    this.sadnessGrade = grade;
-  }
-
-  onSelectionCompassionChange(grade) {
-    this.compassionGrade = grade;
-  }
-
-  onSelectionLoveChange(grade) {
-    this.loveGrade = grade;
-  }
-
-  onSelectionFrustrationChange(grade) {
-    this.frustrationGrade = grade;
-  }
-
   showGraphic() {
-    this.sendSetOfEmotions();
-    this.createDataMoldel();
-    const modalRef = this.modalService.open(ModalGraphComponent);
-    modalRef.componentInstance.emotions = this.emotionsArray;
+    this.showWrongMathFlag = this.calculateNumberOfKids();
+    console.log(this.showWrongMathFlag);
+    if(!this.showWrongMathFlag) {
+      this.sendSetOfEmotions();
+      this.createDataMoldel();
+      const modalRef = this.modalService.open(ModalGraphComponent);
+      console.log('modal feelings array');
+      console.log(this.modalFeelingsArray);
+      modalRef.componentInstance.emotions = this.modalFeelingsArray;
+  
+      modalRef.result
+        .then(result => {
+          console.log(result);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
 
-    modalRef.result
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  calculateNumberOfKids() {
+    this.partialNumberOfKids = this.feelingsNumberOfKids.firstFeelingNumberOfKids + this.feelingsNumberOfKids.secondFeelingNumberOfKids + this.feelingsNumberOfKids.thirdFeelingNumberOfKids;
+    if (0 <= this.totalNumberOfKids - this.partialNumberOfKids) {
+      this.feelingsNumberOfKids.absentNumberOfKids = this.totalNumberOfKids - this.partialNumberOfKids;
+      return false;
+    } else {
+      return true;
+    }
   }
 
   sendSetOfEmotions() {
-    const data = {
-      emotions: {
-        grateful: this.verifyNullity(this.gratefulGrade),
-        worry: this.verifyNullity(this.worryGrade),
-        optimism: this.verifyNullity(this.optimismGrade),
-        sadness: this.verifyNullity(this.sadnessGrade),
-        compassion: this.verifyNullity(this.compassionGrade),
-        love: this.verifyNullity(this.loveGrade),
-        frustration: this.verifyNullity(this.frustrationGrade)
-      },
-      exerciseNumber: 2
-    };
-    this.emotionsService.addSetOfEmotions(data).subscribe(
-      resp => {
-        this.openNotification('success');
-      },
-      error => {
-        this.openNotification('error');
-      }
-    );
+    // const data = {
+    //   emotions: {
+    //     grateful: this.verifyNullity(this.gratefulGrade),
+    //     worry: this.verifyNullity(this.worryGrade),
+    //     optimism: this.verifyNullity(this.optimismGrade),
+    //     sadness: this.verifyNullity(this.sadnessGrade),
+    //     compassion: this.verifyNullity(this.compassionGrade),
+    //     love: this.verifyNullity(this.loveGrade),
+    //     frustration: this.verifyNullity(this.frustrationGrade)
+    //   },
+    //   exerciseNumber: 2
+    // };
+    // this.emotionsService.addSetOfEmotions(data).subscribe(
+    //   resp => {
+    //     this.openNotification('success');
+    //   },
+    //   error => {
+    //     this.openNotification('error');
+    //   }
+    // );
   }
 
   createDataMoldel() {
-    this.emotionsArray = [
-      this.verifyNullity(this.gratefulGrade),
-      this.verifyNullity(this.worryGrade),
-      this.verifyNullity(this.optimismGrade),
-      this.verifyNullity(this.sadnessGrade),
-      this.verifyNullity(this.compassionGrade),
-      this.verifyNullity(this.loveGrade),
-      this.verifyNullity(this.frustrationGrade)
-    ];
-  }
-
-  verifyNullity(score) {
-    if (!score) {
-      return 0;
-    }
-    return score;
+    this.modalFeelingsArray = [];
+    this.feelingsArray.forEach((element, index) => {
+      if(index === 0) {
+        this.modalFeelingsArray.push({ title: element.feelingTitle, numberOfKids: this.feelingsNumberOfKids.firstFeelingNumberOfKids, type: element.type});
+      } else if (index === 1) {
+        this.modalFeelingsArray.push({ title: element.feelingTitle, numberOfKids: this.feelingsNumberOfKids.secondFeelingNumberOfKids, type: element.type});
+      } else if (index === 2) {
+        this.modalFeelingsArray.push({ title: element.feelingTitle, numberOfKids: this.feelingsNumberOfKids.thirdFeelingNumberOfKids, type: element.type});
+      };
+    });
+    this.modalFeelingsArray.push({ title: "Absenti", numberOfKids: this.feelingsNumberOfKids.absentNumberOfKids, type: "absent"});
   }
 
   openNotification(message) {

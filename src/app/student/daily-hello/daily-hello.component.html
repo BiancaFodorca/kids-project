@@ -1,0 +1,20 @@
+<div class="content-box">
+  <h3 style="text-align:center"><i>Salutul</i></h3>
+  <hr>
+  <div class="row">
+    <h5><i>
+      <span class="fa fa-question-circle" ></span>
+      {{question.text}}
+    </i></h5></div>
+    <div class="row" >
+    <div class="col-lg-3 col-sm-6" *ngFor="let hello of typesOfHello; let i=index;">
+      <div class="card">
+        <img [src]="hello.imgUrl" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>{{hello.title}}</b></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ <simple-notifications></simple-notifications>

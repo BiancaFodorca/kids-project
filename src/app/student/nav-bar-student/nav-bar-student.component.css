@@ -7,7 +7,6 @@
 }
 
 menu {
-    font-size: 28px;
     margin-top: 0px;
   }
   
@@ -16,7 +15,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #7ACFD4; /*#ED9E5E;/*#F88E46;*/
+    background-color: #C4ABD6; /*#ED9E5E;/*#F88E46;*/
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
@@ -30,19 +29,22 @@ ul {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 18px 20px;
     text-decoration: none;
   }
   
   li a:hover {
-    background-color: #F0D29C; /* #E3BF67;/*#F8D1B0;*/
+    background-color: #F0D29C;
     text-decoration: none;
     color: white;
     font-style: italic;
+    border-radius: 20px;
   }
   
   .active {
-    background-color: #FFAFAF;/*#29998B;/*#F86400;*/
+    background-color: #9B67C2;
     font-style: italic;
     color: yellow;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }

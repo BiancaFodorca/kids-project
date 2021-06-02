@@ -1,29 +1,57 @@
 <div class="content-box">
-    <h3 style="text-align:center"><i>Formulare cerinte</i></h3>
+    <h3 style="text-align:center"><i>Intampinarea copiilor</i></h3>
     <hr>
   <div class="row">
-    <div class="col-lg-6">
-        <div *ngFor="let question of questions; let i=index">
-            <div class="row" >
-              <div class="col-12" >
-                  <h5 class="text-shadow"><i class="fa fa-question-circle"></i>  Intrebarea {{question.exerciseNumber}}</h5>
-                  <div class="alert alert-primary" role="alert">
-                      <i>{{question.question}}</i>
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="editQuestion(question)">
-                          <i class="fa fa-pencil"></i>
-                        </button>
-                  </div>
-              </div>
-            </div>
-              
-            </div>
-    </div>
-    <div class="col-5 separation-line" *ngIf="showEditQuestionTextarea">
-        <h5 class="text-shadow"> Modificare cerinta pentru <i>Intrebarea {{selectedQuestion.exerciseNumber}}</i> </h5>
-        <textarea class="form-control" [(ngModel)]="editedSelectedQuestion" rows="8" cols="50"></textarea>
-        <button (click)="saveEditedQuestion()" class="btn btn-primary mt-3"><i class="fa fa-save"></i> Salveaza</button>
-        <button (click)="cancelEditingAction()" class="btn btn-secondary mt-3"><i class="fa fa-times"></i> Renunta</button>
+    <h5>
+      <img class="rounded-image" src="./././assets/images/kids10.jpg" alt="Profesor"/>
+      <i>Dupa ce am selectat tipurile de saluturi posibile, ajungem la sectiunea in care specificam numarul curent al copiilor din grupa, anul in care ne aflam si, de-asemenea, inseram link-ul video-ului de pe platforma YouTube pentru a putea vizualiza impreuna "Noutatea zilei".</i></h5>
+  </div>
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10 bordered-container">
+      <div class="row mt-3 mb-3">
+        <div class="col-lg-12 text-shadow">
+          Numarul total al copiilor din grupa: <b class="highlighted-text">{{number.numberOfKids}}</b>. &nbsp; &nbsp;
+          <i class="fa fa-edit" (click)="editField('kidsNumber')" *ngIf="isKidsNumberEditable"></i>
+        </div>
+        <div class="col-lg-12 group-form">
+          <div class="row" *ngIf="!isKidsNumberEditable">
+            <input type="search" class="form-control  ml-3 col-lg-2" placeholder="Numar copii" [(ngModel)]="numberOfKidsEditable">
+            <button (click)="saveEditedQuestion('kidsNumber')" class="btn btn-primary ml-3 col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
+            <button (click)="cancelEditingAction('kidsNumber')" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 mb-3">
+        <div class="col-lg-12 text-shadow">
+          Anul curent: <b class="highlighted-text">{{currentYear}}</b>.&nbsp; &nbsp;
+          <i class="fa fa-edit" (click)="editField('year')" *ngIf="isYearEditable"></i>
+        </div>
+        <div class="col-lg-12 group-form">
+          <div class="row" *ngIf="!isYearEditable">
+            <input type="search" class="form-control ml-3 col-lg-2" placeholder="Anul curent" [(ngModel)]="currentYearEditable">
+            <button (click)="saveEditedQuestion('year')" class="btn btn-primary ml-3 col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
+            <button (click)="cancelEditingAction('year')" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 mb-3">
+        <div class="col-lg-12 text-shadow">
+          Link video: <b class="highlighted-text">{{videoUrl}}</b>. &nbsp; &nbsp;
+          <i class="fa fa-edit" (click)="editField('link')" *ngIf="isLinkEditable"></i>
+        </div>
+        <div class="col-lg-12 group-form">
+          <div class="row" *ngIf="!isLinkEditable">
+            <input type="search" class="form-control  ml-3 col-lg-6" placeholder="Numar copii" [(ngModel)]="videoUrlEditable">
+            <button (click)="saveEditedQuestion('link')" class="btn btn-primary ml-3 col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
+            <button (click)="cancelEditingAction('link')" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+
+
 </div>
 <simple-notifications></simple-notifications>

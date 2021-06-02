@@ -2,10 +2,10 @@
     <h3 style="text-align:center"><i>Creare cont nou</i></h3>
     <hr>
   <div class="row">
-    <div class="col-3">
-        <img class="rounded-image" src="./././assets/images/teacher.png" alt="Profesor"/>
+    <div class="col-5">
+        <img class="rounded-image" src="./././assets/images/account.png" alt="Profesor"/>
     </div>
-    <div class="col-6">
+    <div class="col-6 bordered-container">
         <form [formGroup]="profileForm">
             <div class="form-group">
                 <label for="firstName"> Prenume: </label>
@@ -37,9 +37,6 @@
             </div>
             <button class="btn btn-primary" (click)="saveProfile()">Salveaza cont</button>
           </form>
-    </div>
-    <div class="col-3">
-        <img class="rounded-image" src="./././assets/images/boy.png" alt="Elev"/>
     </div>
   </div>
     

@@ -25,6 +25,9 @@ import { UploadPhotoService } from './shared/services/upload-photo/upload-photo.
 import { NotifierModule } from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { PresenceService } from './shared/services/presence/presence.service';
+import { DailyHelloService } from './shared/services/daily-hello/daily-hello.service';
+import { VideoService } from './shared/services/video/video.service';
 
 const routes: Routes = [
   {
@@ -73,7 +76,11 @@ const routes: Routes = [
     QuestionService,
     UsersService,
     EmotionsService,
-    UploadPhotoService
+    UploadPhotoService,
+    // TODO: this must remain
+    PresenceService,
+    DailyHelloService,
+    VideoService
   ],
   bootstrap: [AppComponent]
 })

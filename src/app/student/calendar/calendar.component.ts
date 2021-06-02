@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DictionaryService } from '../../dictionary.service';
-import { FormWordComponent } from '../../teacher/dictionary/form-word/form-word.component';
 import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -178,10 +177,8 @@ export class CalendarComponent implements OnInit {
     clickToClose: false,
     maxLength: 10
   };
-  @ViewChild('myCanvas') canvasRef: ElementRef;
-  ctx;
-  radius;
-  grad;
+  // CLOCK
+  // https://www.c-sharpcorner.com/article/how-to-create-clock-in-angular/
 
   constructor(
     private modalService: NgbModal,
@@ -243,16 +240,16 @@ export class CalendarComponent implements OnInit {
   }
 
   openFormModal(word) {
-    const modalRef = this.modalService.open(FormWordComponent);
-    modalRef.componentInstance.word = word;
+    // const modalRef = this.modalService.open(FormWordComponent);
+    // modalRef.componentInstance.word = word;
 
-    modalRef.result
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // modalRef.result
+    //   .then(result => {
+    //     console.log(result);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   // drawClock() {

@@ -1,0 +1,29 @@
+<div class="content-box">
+    <h3 style="text-align:center"><i>Astazi invatam despre... </i></h3>
+    <hr>
+    <div class="row titleContainer">
+      <span class="col-2">
+        <img class="littlePhoto" src="./././assets/images/kids21.png" alt="Profesor"/>
+      </span>
+      <span class="col-6">
+        <b>{{infoForToday.title}}</b>
+      </span>
+    </div>
+    <div class="row">
+      <div class="col-4">
+          <div class="photoContainer">
+            <img class="photo" [src]="infoForToday.image[0]" alt="Profesor"/>
+           </div>
+      </div>
+      <div class="col-4">
+        <h3>{{infoForToday.description}}</h3>
+        <a [href]="infoForToday.link" target="_blank"><img class="bookPhoto" src="./././assets/images/book.jpg" alt="Profesor"/></a>
+      </div>
+      <div class="col-4">
+        <div class="photoContainer">
+          <img class="photo" [src]="infoForToday.image[1]" alt="Profesor"/>
+         </div>
+      </div>
+    </div>
+  </div>
+  <simple-notifications></simple-notifications>

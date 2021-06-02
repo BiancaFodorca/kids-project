@@ -10,8 +10,10 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class UploadBookComponent implements OnInit {
   fileToUpload: File = null;
-  name: string;
+  riddleText: string;
+  oldRiddle = "Trece monstrul marea cu parul alb ca sarea. Ce-i?";
   displayMoreInputs = false;
+  errorText = "";
   suplimentedFilesList = [];
   typeSelected = '';
   pastFilesList = [];
@@ -30,6 +32,15 @@ export class UploadBookComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  saveRiddle() {
+    this.errorText = "";
+    if (this.riddleText && this.fileToUpload) {
+      this.oldRiddle = this.riddleText;
+    } else {
+      this.errorText = "Ne pare rau, insa atat textul cat si fotografie trebuie adaugate pentru a putea schimba ghicitoarea.";
+    }
+  }
 
   getAllUploadedFiles(type: string) {
     this.generalTypeSelected = type;
@@ -73,10 +84,11 @@ export class UploadBookComponent implements OnInit {
   }
 
   uploadSelectedFile() {
-    let title = this.name;
-    if (!this.name) {
-      title = this.fileToUpload.name;
-    }
+    // let title = this.name;
+    // if (!this.name) {
+    //   title = this.fileToUpload.name;
+    // }
+    const title = this.fileToUpload.name;
     this.bookService.uploadNewBook(this.fileToUpload, title, 'carte').subscribe(
       response => {
         this.openNotification('success', 'cartea', 'salvata');

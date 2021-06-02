@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ResponsesService } from '../../shared/services/responses/responses.service';
-import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 import { NotificationsService } from 'angular2-notifications';
-import { QuestionService } from '../../shared/services/questions/question.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { VideoService } from '../../shared/services/video/video.service';
 
 @Component({
   selector: 'app-video',
@@ -14,10 +12,7 @@ export class VideoComponent implements OnInit {
   question = {
     text: 'Vizionati cu atentie!'
   };
-  videoUrl = "https://www.youtube.com/embed/zO07amDIYDU";
-  bookId;
-  noSelectedBook = true;
-  cvintet;
+  videoUrl = ""; // https://www.youtube.com/embed/zO07amDIYDU
   info =
     'Materialele video sunt extrem de atractive pentru cei mici, dezvoltandu-le nu doar vocabularul, ci si creativitatea. Insa in calitate de cadre didactice sau de parinti, trebuie sa supraveghem cu atentie activitatea celor mici in mediul online, astfel incat acestia sa culeaga doar informatiile potrivite vartei lor.';
   options = {
@@ -27,50 +22,24 @@ export class VideoComponent implements OnInit {
     clickToClose: false,
     maxLength: 10
   };
-  exerciceNumber = 5;
 
   constructor(
     public sanitizer:DomSanitizer,
-    private responseService: ResponsesService,
-    private lsService: LocalStorageService,
     private _service: NotificationsService,
-    private questionService: QuestionService
+    private videoService: VideoService
   ) {
-    this.getBookId();
-    this.getQuestionSentence();
+    this.getVideo();
   }
 
   ngOnInit() {}
 
-  getQuestionSentence() {
-    this.questionService
-      .getQuestionByExerciseNumber(this.exerciceNumber)
-      .subscribe(resp => {
-        // this.question.text = JSON.parse(resp._body).question;
-      });
-  }
-
-  getBookId() {
-    this.bookId = this.lsService.get('bookId');
-    if (this.bookId) {
-      this.noSelectedBook = false;
-    }
-  }
-
-  createCvintet() {
-    const data = {
-      response: this.cvintet,
-      exerciseNumber: 5,
-      idBook: this.bookId
-    };
-    this.responseService.createResponse(data).subscribe(
-      response => {
-        this.openNotification('success');
-      },
-      error => {
-        this.openNotification('error');
-      }
-    );
+  getVideo() {
+    this.videoService.getAllVideos().subscribe(resp => {
+      const response = JSON.parse(resp._body);
+      
+      this.videoUrl = response[response.length - 1].videoUrl;
+      console.log(response[response.length - 1].videoUrl);
+    });
   }
 
   openNotification(message) {

@@ -1,14 +1,14 @@
 <div class="content-box">
-    <h3 style="text-align:center"><i>Suntem invatacei</i></h3>
+    <h3 style="text-align:center"><i>Zi cu insemnatate</i></h3>
     <hr>
    <div class="row">
       <h5>
-        <img class="rounded-image" src="./././assets/images/brain.jpg" alt="Profesor"/>
-        <i>Trecem si la lucruri serioase. Mini-lectia pentru mini-invatacei isi propune sa imbogateasca cunostintele prescolarilor. Dupa ce v-ati decis asupra tematicii pe care doriti sa o abordati adaugati titlul, descrierea, doua imagini ssgestive si, optional, un link care sa-i redirecteze spre o alta pagina web, cu mai multe informatii.</i></h5>
+        <img class="rounded-image" src="./././assets/images/balloons.png" alt="Profesor"/>
+        <i>Fie ca este ziua de nastere a unui copil, o sarbatoare sau pur si simplu o zi mult soare, fiecare dintre ele trebuie celebrate asa cum se cuvine.</i></h5>
    </div>
    <div class="row">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-10 bordered-container">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-6 bordered-container">
          <div class="form-group">
             <label for="role"><strong>Titlul: </strong> </label>
             <input id="role" [(ngModel)]="riddleText" class="form-control" />
@@ -18,20 +18,19 @@
             <textarea id="role" type="text" [(ngModel)]="riddleText" class="form-control" rows="6" cols="50"></textarea>
         </div>
         <div class="form-group">
-          <label for="file"><strong>Selecteaza imaginea 1:</strong></label><br>
+          <label for="file"><strong>Imagine:</strong></label><br>
           <input type="file"
                  id="file"
                  (change)="handleFileInput($event.target.files)">
         </div>
         <div class="form-group">
-         <label for="file"><strong>Selecteaza imaginea 2:</strong></label><br>
-         <input type="file"
-                id="file"
-                (change)="handleFileInput($event.target.files)">
-       </div>
-       <div class="form-group">
-         <label for="role"><strong>Link: </strong> </label>
-         <input id="role" [(ngModel)]="riddleText" class="form-control" />
+          <label for="role"><strong>Tip eveniment: </strong> </label>
+          <select  class="form-control" [(ngModel)]="eventType">
+            <option [ngValue]="undefined" hidden selected>Selectati tipul evenimentului</option>
+            <option *ngFor="let event of eventTypes" [value]="event.type">
+              {{event.name}}
+            </option>
+        </select>
         </div>
         <hr><br>
         <button (click)="saveRiddle()" class="btn btn-primary col-lg-2"><i class="fa fa-save"></i> Salveaza</button>

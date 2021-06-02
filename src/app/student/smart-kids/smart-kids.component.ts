@@ -5,19 +5,19 @@ import { NotificationsService } from 'angular2-notifications';
 import { QuestionService } from '../../shared/services/questions/question.service';
 
 @Component({
-  selector: 'app-today-importance',
-  templateUrl: './today-importance.component.html',
-  styleUrls: ['./today-importance.component.css']
+  selector: 'app-smart-kids',
+  templateUrl: './smart-kids.component.html',
+  styleUrls: ['./smart-kids.component.css']
 })
-export class TodayImportanceComponent implements OnInit {
+export class SmartKidsComponent implements OnInit {
   question = {
     text: 'Scrieti un rezumat al textului citit.'
   };
   infoForToday = {
-    title: "Ziua internationala a copiilor",
-    image: "./././assets/images/bia.jpg",
-    description: "  În fiecare an, în prima zi de vară  se celebrează Ziua Internaţională a Copilului, prilej de a sărbători cea mai frumoasă perioadă din viaţa fiecărui om – copilăria, de a oferi sprijin copiilor, de a aprecia şi iubi copiii şi de a promova bunăstarea copiilor din toată lumea. A fost sărbătorită pentru prima dată la nivel naţional în Turcia în data de 23 aprilie 1920.",
-    type: "GIRL_BDAY", //"GENERIC_EVENT", BOY_BDAY
+    title: "Sistemul solar",
+    image: ["./././assets/images/sistem-solar.jpg", "./././assets/images/sistem-solar2.jpg"],
+    link: "https://www.descopera.org/sistemul-solar/",
+    description: "Sistemul nostru solar cuprinde Soarele, cele opt planete, 162 de sateliti naturali ai acestora, 3 planete pitice si corpuri mici: asteorizi, comete, praf, meteoriti etc. Toate planetele orbiteaza in jurul Soarelui, acesta avand peste 99% din masa totala a sistemului solar."
   }
   bookId;
   noSelectedBook = true;

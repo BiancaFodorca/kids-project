@@ -26,8 +26,10 @@ export class AuthService extends BaseService {
       'Basic ' + btoa(credentials.email + ':' + credentials.password)
     );
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const postReqResponse$ = this.http.post(
-      `${this.baseUrl}/school/auth/login`,
+      `${this.baseUrl}/prescolari/auth/login`,
       credentials,
       { headers: headers }
     );

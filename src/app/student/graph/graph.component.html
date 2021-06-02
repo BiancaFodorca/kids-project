@@ -43,11 +43,10 @@
     </div>
     <br>
     <div class="row" *ngIf="feelingsNumberOfKids.thirdFeelingNumberOfKids !== null">
-      <button class="col-2 btn btn-primary"  (click)="showGraphic()">Vizualizeaza prezenta</button>
+      <button class="col-2 btn btn-primary"  (click)="showPresence()">Vizualizeaza prezenta</button>
       <div *ngIf="showWrongMathFlag" class="col-8 ml-2 redText">
         Uuuups! Numaratoarea nu a fost corecta. Mai incercam odata?!
       </div>
       
     </div>
   </div>
-  <simple-notifications></simple-notifications>

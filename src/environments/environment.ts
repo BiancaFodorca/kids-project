@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: '192.168.88.111:8080' // /school/dictionar
+  baseApiUrl: 'http://localhost:8080/'
+  // baseApiUrl: '192.168.88.111:8080' // /school/dictionar
 };

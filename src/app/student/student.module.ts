@@ -18,6 +18,7 @@ import { NoBookSelectedComponent } from './no-book-selected/no-book-selected.com
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SafePipe } from './safe.pipe';
 import { CalendarComponent } from './calendar/calendar.component';
+import { SmartKidsComponent } from './smart-kids/smart-kids.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'daily-hello', component: DailyHelloComponent },
       { path: 'graph', component: GraphComponent },
       { path: 'video', component: VideoComponent },
+      { path: 'smart-kids', component: SmartKidsComponent },
       { path: 'riddle', component: RiddleComponent },
       { path: 'today-importance', component: TodayImportanceComponent },
       { path: 'map', component: MapComponent }
@@ -57,6 +59,7 @@ const routes: Routes = [
     RiddleComponent,
     TodayImportanceComponent,
     MapComponent,
+    SmartKidsComponent,
     NavBarStudentComponent,
     ModalGraphComponent,
     NoBookSelectedComponent,

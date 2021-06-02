@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../shared/services/questions/question.service';
 import { NotificationsService } from 'angular2-notifications';
+import { DomSanitizer } from '@angular/platform-browser';
+import { PresenceService } from '../../shared/services/presence/presence.service';
+import { VideoService } from '../../shared/services/video/video.service';
 
 @Component({
   selector: 'app-questions',
@@ -8,10 +11,19 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
-  questions = [];
-  selectedQuestion;
-  showEditQuestionTextarea = false;
-  editedSelectedQuestion: string;
+  number = {
+    numberOfKids: 0,
+    id: 0
+  };
+  numberOfKidsEditable;
+  currentYear = 2021;
+  currentYearEditable;
+  videoUrl = "";
+  videoId = 0;
+  videoUrlEditable;
+  isKidsNumberEditable = true;
+  isYearEditable = true;
+  isLinkEditable = true;
   options = {
     timeOut: 5000,
     showProgressBar: true,
@@ -21,67 +33,101 @@ export class QuestionsComponent implements OnInit {
   };
 
   constructor(
-    private questionService: QuestionService,
-    private _service: NotificationsService
+    public sanitizer:DomSanitizer,
+    private _service: NotificationsService,
+    private presenceService: PresenceService,
+    private videoService: VideoService
   ) {
-    this.getAllQuestions();
+    this.getAllInfo();
   }
 
   ngOnInit() {}
 
-  getAllQuestions() {
-    this.questionService.getAll().subscribe(resp => {
-      // this.questions = JSON.parse(resp._body);
+  getAllInfo() {
+    this.getCurrentNumberOfKids();
+    this.getVideo();
+  }
+
+  getVideo() {
+    this.videoService.getAllVideos().subscribe(resp => {
+      const response = JSON.parse(resp._body);
+      
+      this.videoUrl = response[response.length - 1].videoUrl;
+      this.videoId = response[response.length - 1].id;
     });
   }
 
-  editQuestion(question) {
-    this.selectedQuestion = question;
-    this.showEditQuestionTextarea = true;
-    this.editedSelectedQuestion = question.question;
+  getCurrentNumberOfKids() {
+    this.presenceService.getLastNumberOfKids().subscribe(resp => {
+      console.log(resp);
+      this.number.numberOfKids = JSON.parse(resp._body).numar;
+      this.number.id = JSON.parse(resp._body).id;
+    });
   }
 
-  saveEditedQuestion() {
-    const contentData = {
-      question: this.editedSelectedQuestion,
-      exerciseNumber: this.selectedQuestion.exerciseNumber
-    };
-    this.questionService
-      .updateExistingQuestion(this.selectedQuestion.id, contentData)
-      .subscribe(
-        response => {
+  editField(type) {
+    if(type==="link"){
+      this.isLinkEditable = false;
+      this.videoUrlEditable = this.videoUrl;
+    }else if( type ==="year"){
+      this.isYearEditable = false;
+      this.currentYearEditable = this.currentYear;
+    } else if(type==="kidsNumber"){
+      this.isKidsNumberEditable = false;
+      this.numberOfKidsEditable = this.number.numberOfKids;
+    }
+  }
+
+  saveEditedQuestion(type) {
+    if(type==="link"){
+      this.isLinkEditable = true;
+      this.videoUrl = this.videoUrlEditable;
+      this.videoService.updateExistingVideo(this.videoId, { videoUrl: this.videoUrlEditable}).subscribe(
+        resp => {
           this.openNotification('success');
-          this.getAllQuestions();
-        },
-        error => {
+        }, error => {
           this.openNotification('error');
         }
-      );
+      )
+    }else if( type ==="year"){
+      this.isYearEditable = true;
+      this.currentYear = this.currentYearEditable;
+    } else if(type==="kidsNumber"){
+      this.isKidsNumberEditable = true;
+      this.number.numberOfKids = this.numberOfKidsEditable;
+      this.presenceService.addNewestNumber( { numar: this.numberOfKidsEditable }).subscribe(
+        resp => {
+          this.openNotification('success');
+        }, error => {
+          this.openNotification('error');
+        }
+      )
+    }
   }
 
   openNotification(message) {
     if (message === 'success') {
       this._service.success(
         'Felicitari! :)',
-        'Enuntul cerintei a fost modificat cu succes!',
+        'Modificarea a fost realizata cu succes!',
         this.options
       );
     } else {
       this._service.error(
         'Ne pare rau! :(',
-        'Enuntul cerintei nu a putut fi modificat. Mai incearca dupa ce ai dat refresh paginii',
+        'Modificarea nu a fost salvata. Te rugam reincearca, dupa ce ai dat refresh paginii!',
         this.options
       );
     }
   }
 
-  cancelEditingAction() {
-    this.clearSelectedQuestionItems();
-  }
-
-  clearSelectedQuestionItems() {
-    this.selectedQuestion = null;
-    this.showEditQuestionTextarea = false;
-    this.editedSelectedQuestion = null;
+  cancelEditingAction(type) {
+    if(type==="link"){
+      this.isLinkEditable = true;
+    }else if( type ==="year"){
+      this.isYearEditable = true;
+    } else if(type==="kidsNumber"){
+      this.isKidsNumberEditable = true;
+    }
   }
 }

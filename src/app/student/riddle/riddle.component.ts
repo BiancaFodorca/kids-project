@@ -85,14 +85,14 @@ export class RiddleComponent implements OnInit {
   openNotification(message) {
     if (message === 'success') {
       this._service.success(
-        'Yupiii! :)',
-        'Felicitari, imaginea a fost salvata cu succes!',
+        'Felicitari! :)',
+        'Modificarea ghicitorii a fost realizata cu succes!',
         this.options
       );
     } else {
       this._service.error(
-        'Ohh, ne pare rau! :(',
-        'Imaginea nu a putut fi adaugata. Mai incearca dupa ce ai dat refresh paginii.',
+        'Ne pare rau! :(',
+        'Modificarea ghicitorii nu a fost salvata. Te rugam reincearca, dupa ce ai dat refresh paginii!',
         this.options
       );
     }

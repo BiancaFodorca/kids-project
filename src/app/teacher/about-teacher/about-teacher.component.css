@@ -1,6 +1,14 @@
 .rounded-image{
-    border-radius: 10%;
-    border-bottom-right-radius: 75%;
-    width:90%;
-    height: 50%;
+    border-radius: 50%;
+    height: 500px;
+    padding: 25px;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    border: 4px solid #AAC4D1;
+}
+
+.teacher-container {
+    border: 2px solid #2A5B84;
+    border-radius: 20px;
+    padding: 2% 5%;
 }

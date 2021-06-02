@@ -36,14 +36,14 @@ export class LoginComponent implements OnInit {
 
   doLogin(values: any): void {
     if (this.login_Form.valid) {
-      // this.authService.login(values).subscribe(resp => {
-      //   this.lsService.set('uRole', resp._body);
-      //   // if (resp._body === '1') {
-      //   //   this.router.navigate(['/teacher']);
-      //   // } else if ((resp._body = '2')) {
-      //   //   this.router.navigate(['/student']);
-      //   // }
-      // });
+      this.authService.login(values).subscribe(resp => {
+        this.lsService.set('uRole', resp._body);
+        if (resp._body === '1') {
+          this.router.navigate(['/teacher']);
+        } else if ((resp._body = '2')) {
+          this.router.navigate(['/student']);
+        }
+      });
     }
   }
 }

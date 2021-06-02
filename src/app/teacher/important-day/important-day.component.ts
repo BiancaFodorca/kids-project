@@ -1,24 +1,28 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { c } from '@angular/core/src/render3';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteWordComponent } from './delete-word/delete-word.component';
 import { TouchSequence } from 'selenium-webdriver';
 import { DictionaryService } from '../../dictionary.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
-  selector: 'app-dictionary',
-  templateUrl: './dictionary.component.html',
-  styleUrls: ['./dictionary.component.css']
+  selector: 'app-important-day',
+  templateUrl: './important-day.component.html',
+  styleUrls: ['./important-day.component.css']
 })
-export class DictionaryComponent implements OnInit, OnDestroy {
+export class ImportantDayComponent implements OnInit, OnDestroy {
   infoForToday = {
-    title: "Sistemul solar",
-    image: ["./././assets/images/sistem-solar.jpg", "./././assets/images/sistem-solar2.jpg"],
-    link: "https://www.descopera.org/sistemul-solar/",
-    description: "Sistemul nostru solar cuprinde Soarele, cele opt planete, 162 de sateliti naturali ai acestora, 3 planete pitice si corpuri mici: asteorizi, comete, praf, meteoriti etc. Toate planetele orbiteaza in jurul Soarelui, acesta avand peste 99% din masa totala a sistemului solar."
+    title: "Ziua internationala a copiilor",
+    image: "./././assets/images/bia.jpg",
+    description: "  În fiecare an, în prima zi de vară  se celebrează Ziua Internaţională a Copilului, prilej de a sărbători cea mai frumoasă perioadă din viaţa fiecărui om – copilăria, de a oferi sprijin copiilor, de a aprecia şi iubi copiii şi de a promova bunăstarea copiilor din toată lumea. A fost sărbătorită pentru prima dată la nivel naţional în Turcia în data de 23 aprilie 1920.",
+    type: "GIRL_BDAY", //"GENERIC_EVENT", BOY_BDAY
   }
+  eventTypes = [
+    { type: "GIRL_BDAY", name: "Aniversare fetita"},
+    { type: "BOY_BDAY", name: "Aniversare baietel"},
+    { type: "GENERIC_EVENT", name: "Eveniment generic"}
+  ];
   dictionary;
   wordsList = [];
   searchedWord: string;
@@ -125,19 +129,6 @@ export class DictionaryComponent implements OnInit, OnDestroy {
     //   .catch(error => {
     //     console.log(error);
     //   });
-  }
-
-  openDeleteWordModal(w) {
-    const modalRef = this.modalService.open(DeleteWordComponent);
-    modalRef.componentInstance.word = w;
-
-    modalRef.result
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
   openNotification(message, action) {

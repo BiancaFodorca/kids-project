@@ -1,3 +1,34 @@
+.rounded-image {
+    border-radius: 50%;
+    height: 80px;
+    padding: 2px;
+    border: 4px solid #AAC4D1;
+}
+
+.bordered-container {
+    border: 2px solid #2A5B84;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 2% 5%;
+}
+
+.btn-primary {
+    background-color: #2A5B84;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #2A5B84;
+}
+
+.errorText {
+    color: #2A5B84;
+}
+
+
+
+/*to be deleted*/
+
 .background-list {
     background-color: #4D3976;
 }

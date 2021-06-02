@@ -7,7 +7,6 @@
 }
 
 menu {
-    font-size: 28px;
     margin-top: 0px;
   }
   
@@ -16,7 +15,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color:#278577;
+    background-color:#AAC4D1;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
@@ -30,19 +29,22 @@ ul {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 18px 20px;
     text-decoration: none;
   }
   
   li a:hover {
-    background-color: #00B25F;
+    background-color: #2A5B84;
     text-decoration: none;
     color: white;
     font-style: italic;
+    border-radius: 20px;
   }
   
   .active {
-    background-color: #0A4754;
+    background-color: #2A5B84;;
     font-style: italic;
     color: yellow;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }

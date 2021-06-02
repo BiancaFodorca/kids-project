@@ -12,10 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { DictionaryComponent } from './dictionary/dictionary.component';
 import { NgbPaginationModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormWordComponent } from './dictionary/form-word/form-word.component';
 import { DeleteWordComponent } from './dictionary/delete-word/delete-word.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { ImportantDayComponent } from './important-day/important-day.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,7 @@ const routes: Routes = [
       { path: 'questions', component: QuestionsComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'dictionary', component: DictionaryComponent },
+      { path: 'important-day', component: ImportantDayComponent },
       { path: 'newaccount', component: CreateAccountComponent }
     ]
   }
@@ -54,10 +55,10 @@ const routes: Routes = [
     AboutTeacherComponent,
     CreateAccountComponent,
     DictionaryComponent,
-    FormWordComponent,
-    DeleteWordComponent
+    DeleteWordComponent,
+    ImportantDayComponent
   ],
   exports: [RouterModule],
-  entryComponents: [FormWordComponent, DeleteWordComponent]
+  entryComponents: [DeleteWordComponent]
 })
 export class TeacherModule {}

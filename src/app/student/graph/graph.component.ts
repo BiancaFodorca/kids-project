@@ -5,6 +5,7 @@ import { EmotionsService } from '../../shared/services/emotions/emotions.service
 import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 import { NotificationsService } from 'angular2-notifications';
 import { QuestionService } from '../../shared/services/questions/question.service';
+import { PresenceService } from '../../shared/services/presence/presence.service';
 
 @Component({
   selector: 'app-graph',
@@ -41,7 +42,7 @@ export class GraphComponent implements OnInit {
   };
   modalFeelingsArray = [];
   showWrongMathFlag = false;
-  totalNumberOfKids = 18;
+  totalNumberOfKids;
   partialNumberOfKids = 0;
   bookId;
   noSelectedBook = true;
@@ -56,37 +57,33 @@ export class GraphComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private emotionsService: EmotionsService,
-    private lsService: LocalStorageService,
+    private presenceService: PresenceService,
     private _service: NotificationsService,
-    private questionService: QuestionService
   ) {
-    this.getBookId();
-    this.getQuestionSentence();
+    this.getCurrentNumberOfKids();
+    this.getAllFeelingList()
   }
 
   ngOnInit() {}
 
-  getBookId() {
-    this.bookId = this.lsService.get('bookId');
-    if (this.bookId) {
-      this.noSelectedBook = false;
-    }
+  getCurrentNumberOfKids() {
+    this.totalNumberOfKids = 2;
+    this.presenceService.getLastNumberOfKids().subscribe(resp => {
+      console.log(resp);
+      this.totalNumberOfKids = JSON.parse(resp._body).numar;
+    })
   }
 
-  getQuestionSentence() {
-    this.questionService
-      .getQuestionByExerciseNumber(this.exerciceNumber)
-      .subscribe(resp => {
-        // this.question.text = JSON.parse(resp._body).question;
-      });
+  getAllFeelingList() {
+    this.presenceService.getAllFeelings().subscribe(resp => {
+      this.feelingsArray = JSON.parse(resp._body);
+    })
   }
 
-  showGraphic() {
+  showPresence() {
     this.showWrongMathFlag = this.calculateNumberOfKids();
     console.log(this.showWrongMathFlag);
     if(!this.showWrongMathFlag) {
-      this.sendSetOfEmotions();
       this.createDataMoldel();
       const modalRef = this.modalService.open(ModalGraphComponent);
       console.log('modal feelings array');
@@ -113,29 +110,6 @@ export class GraphComponent implements OnInit {
     }
   }
 
-  sendSetOfEmotions() {
-    // const data = {
-    //   emotions: {
-    //     grateful: this.verifyNullity(this.gratefulGrade),
-    //     worry: this.verifyNullity(this.worryGrade),
-    //     optimism: this.verifyNullity(this.optimismGrade),
-    //     sadness: this.verifyNullity(this.sadnessGrade),
-    //     compassion: this.verifyNullity(this.compassionGrade),
-    //     love: this.verifyNullity(this.loveGrade),
-    //     frustration: this.verifyNullity(this.frustrationGrade)
-    //   },
-    //   exerciseNumber: 2
-    // };
-    // this.emotionsService.addSetOfEmotions(data).subscribe(
-    //   resp => {
-    //     this.openNotification('success');
-    //   },
-    //   error => {
-    //     this.openNotification('error');
-    //   }
-    // );
-  }
-
   createDataMoldel() {
     this.modalFeelingsArray = [];
     this.feelingsArray.forEach((element, index) => {
@@ -148,21 +122,5 @@ export class GraphComponent implements OnInit {
       };
     });
     this.modalFeelingsArray.push({ title: "Absenti", numberOfKids: this.feelingsNumberOfKids.absentNumberOfKids, type: "absent"});
-  }
-
-  openNotification(message) {
-    if (message === 'success') {
-      this._service.success(
-        'Yupiii! :)',
-        'Felicitari, punctajul acordat emotiilor au fost salvate cu succes!',
-        this.options
-      );
-    } else {
-      this._service.error(
-        'Ohh, ne pare rau! :(',
-        'Punctajul acordat emotiilor nu a putut fi adaugat. Mai incearca dupa ce ai dat refresh paginii',
-        this.options
-      );
-    }
   }
 }

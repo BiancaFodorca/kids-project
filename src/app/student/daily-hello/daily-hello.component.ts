@@ -3,6 +3,7 @@ import { ResponsesService } from '../../shared/services/responses/responses.serv
 import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 import { NotificationsService } from 'angular2-notifications';
 import { QuestionService } from '../../shared/services/questions/question.service';
+import { DailyHelloService } from '../../shared/services/daily-hello/daily-hello.service';
 
 @Component({
   selector: 'app-daily-hello',
@@ -14,20 +15,9 @@ export class DailyHelloComponent implements OnInit {
     text:
       'Cum vrem sa fim intampinati astazi?'
   };
-  typesOfHello = [
-    { title: "Salut cu manuta", imgUrl: "./././assets/images/hello.gif" },
-    { title: "Bataie din palme", imgUrl: "./././assets/images/clapped.gif" },
-    { title: "Facut cu ochiul", imgUrl: "./././assets/images/wink.gif" },
-    { title: "Dans", imgUrl: "./././assets/images/dance.gif" },
-    { title: "Trimis pupic", imgUrl: "./././assets/images/kiss.gif" },
-    { title: "Zambet larg", imgUrl: "./././assets/images/smile2.gif" },
-    { title: "Imbratisare virtuala", imgUrl: "./././assets/images/hug2.gif" },
-    { title: "Batut din picioruse", imgUrl: "./././assets/images/move-feet.gif" },
-  ];
+  typesOfHello = [];
   quote: string;
   existingtResponseId;
-  bookId;
-  noSelectedBook = true;
   options = {
     timeOut: 5000,
     showProgressBar: true,
@@ -35,67 +25,20 @@ export class DailyHelloComponent implements OnInit {
     clickToClose: false,
     maxLength: 10
   };
-  exerciceNumber = 1;
 
   constructor(
-    private responseService: ResponsesService,
-    private lsService: LocalStorageService,
     private _service: NotificationsService,
-    private questionService: QuestionService
+    private dailyHelloService: DailyHelloService
   ) {
-    this.getBookId();
-    this.getQuestionSentence();
+    this.getSelectedTypesOfHello();
   }
 
   ngOnInit() {}
 
-  getQuestionSentence() {
-    this.questionService
-      .getQuestionByExerciseNumber(this.exerciceNumber)
-      .subscribe(resp => {
-        // this.question.text = JSON.parse(resp._body).question;
-      });
-  }
-
-  getBookId() {
-    this.bookId = this.lsService.get('bookId');
-    if (this.bookId) {
-      this.noSelectedBook = false;
-    }
-  }
-
-  createQuote() {
-    const data = {
-      response: this.quote,
-      exerciseNumber: '1',
-      idBook: '3'
-    };
-    this.responseService.createResponse(data).subscribe(
-      response => {
-        this.openNotification('success');
-      },
-      error => {
-        this.openNotification('error');
-      }
-    );
-  }
-
-  editQuoate() {
-    const data = {
-      response: this.quote,
-      exerciseNumber: 1,
-      idBook: this.bookId
-    };
-    this.responseService
-      .updateExistingResponse(this.existingtResponseId, data)
-      .subscribe(
-        response => {
-          this.openNotification('success');
-        },
-        error => {
-          this.openNotification('error');
-        }
-      );
+  getSelectedTypesOfHello() {
+    this.dailyHelloService.getAllSelectedTypesOfHello().subscribe(resp => {
+      this.typesOfHello = JSON.parse(resp._body);
+    });
   }
 
   openNotification(message) {

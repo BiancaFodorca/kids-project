@@ -87,3 +87,18 @@
 .weatherContainer {
     text-align: center;
 }
+
+.activeCard {
+    border: 8px dotted red;
+}
+
+.boldDayContainer {
+    color: red;
+    padding: 10px;
+}
+
+.boldText {
+    color: red;
+    font-weight: bold;
+    font-size: 150%;
+}

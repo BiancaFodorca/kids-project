@@ -11,11 +11,11 @@
       <div class="col-lg-6 bordered-container">
          <div class="form-group">
             <label for="role"><strong>Titlul: </strong> </label>
-            <input id="role" [(ngModel)]="riddleText" class="form-control" />
+            <input id="role" [(ngModel)]="title" class="form-control" />
            </div>
          <div class="form-group">
             <label for="role"><strong>Descrierea: </strong> </label>
-            <textarea id="role" type="text" [(ngModel)]="riddleText" class="form-control" rows="6" cols="50"></textarea>
+            <textarea id="role" type="text" [(ngModel)]="description" class="form-control" rows="6" cols="50"></textarea>
         </div>
         <div class="form-group">
           <label for="file"><strong>Imagine:</strong></label><br>
@@ -33,7 +33,7 @@
         </select>
         </div>
         <hr><br>
-        <button (click)="saveRiddle()" class="btn btn-primary col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
+        <button (click)="saveInformationAboutTodayImportance()" class="btn btn-primary col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
         <button (click)="cancelEditedRiddle()" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
         <p class="errorText col-lg-6">{{errorText}}</p>
       </div>

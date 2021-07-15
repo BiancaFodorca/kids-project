@@ -1,18 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalGraphComponent } from './modal-graph/modal-graph.component';
-import { EmotionsService } from '../../shared/services/emotions/emotions.service';
-import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
-import { NotificationsService } from 'angular2-notifications';
-import { QuestionService } from '../../shared/services/questions/question.service';
+import { ModalPresenceComponent } from './modal-presence/modal-presence.component';
 import { PresenceService } from '../../shared/services/presence/presence.service';
 
 @Component({
-  selector: 'app-graph',
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  selector: 'app-presence',
+  templateUrl: './presence.component.html',
+  styleUrls: ['./presence.component.css']
 })
-export class GraphComponent implements OnInit {
+export class PresenceComponent implements OnInit {
   question = {
     text:
       'Cum ne simtim astazi?'
@@ -44,8 +40,6 @@ export class GraphComponent implements OnInit {
   showWrongMathFlag = false;
   totalNumberOfKids;
   partialNumberOfKids = 0;
-  bookId;
-  noSelectedBook = true;
   options = {
     timeOut: 5000,
     showProgressBar: true,
@@ -53,12 +47,10 @@ export class GraphComponent implements OnInit {
     clickToClose: false,
     maxLength: 10
   };
-  exerciceNumber = 2;
 
   constructor(
     private modalService: NgbModal,
     private presenceService: PresenceService,
-    private _service: NotificationsService,
   ) {
     this.getCurrentNumberOfKids();
     this.getAllFeelingList()
@@ -69,14 +61,13 @@ export class GraphComponent implements OnInit {
   getCurrentNumberOfKids() {
     this.totalNumberOfKids = 2;
     this.presenceService.getLastNumberOfKids().subscribe(resp => {
-      console.log(resp);
-      this.totalNumberOfKids = JSON.parse(resp._body).numar;
+      this.totalNumberOfKids = JSON.parse((<any>resp)._body).numar;
     })
   }
 
   getAllFeelingList() {
     this.presenceService.getAllFeelings().subscribe(resp => {
-      this.feelingsArray = JSON.parse(resp._body);
+      this.feelingsArray = JSON.parse((<any>resp)._body);
     })
   }
 
@@ -85,9 +76,7 @@ export class GraphComponent implements OnInit {
     console.log(this.showWrongMathFlag);
     if(!this.showWrongMathFlag) {
       this.createDataMoldel();
-      const modalRef = this.modalService.open(ModalGraphComponent);
-      console.log('modal feelings array');
-      console.log(this.modalFeelingsArray);
+      const modalRef = this.modalService.open(ModalPresenceComponent);
       modalRef.componentInstance.emotions = this.modalFeelingsArray;
   
       modalRef.result

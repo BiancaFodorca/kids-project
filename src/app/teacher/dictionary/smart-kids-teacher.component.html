@@ -10,32 +10,32 @@
       <div class="col-lg-1"></div>
       <div class="col-lg-10 bordered-container">
          <div class="form-group">
-            <label for="role"><strong>Titlul: </strong> </label>
-            <input id="role" [(ngModel)]="riddleText" class="form-control" />
+            <label for="title"><strong>Titlul: </strong> </label>
+            <input id="title" [(ngModel)]="title" class="form-control" />
            </div>
          <div class="form-group">
-            <label for="role"><strong>Descrierea: </strong> </label>
-            <textarea id="role" type="text" [(ngModel)]="riddleText" class="form-control" rows="6" cols="50"></textarea>
+            <label for="description"><strong>Descrierea: </strong> </label>
+            <textarea id="description" type="text" [(ngModel)]="description" class="form-control" rows="6" cols="50"></textarea>
         </div>
         <div class="form-group">
           <label for="file"><strong>Selecteaza imaginea 1:</strong></label><br>
           <input type="file"
-                 id="file"
-                 (change)="handleFileInput($event.target.files)">
+                 id="file1"
+                 (change)="handleFileInput($event.target.files, 'first')">
         </div>
         <div class="form-group">
          <label for="file"><strong>Selecteaza imaginea 2:</strong></label><br>
          <input type="file"
-                id="file"
-                (change)="handleFileInput($event.target.files)">
+                id="file2"
+                (change)="handleFileInput($event.target.files, 'second')">
        </div>
        <div class="form-group">
-         <label for="role"><strong>Link: </strong> </label>
-         <input id="role" [(ngModel)]="riddleText" class="form-control" />
+         <label for="link"><strong>Link: </strong> </label>
+         <input id="link" [(ngModel)]="link" class="form-control" />
         </div>
         <hr><br>
-        <button (click)="saveRiddle()" class="btn btn-primary col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
-        <button (click)="cancelEditedRiddle()" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
+        <button (click)="saveLessonInformation()" class="btn btn-primary col-lg-2"><i class="fa fa-save"></i> Salveaza</button>
+        <button (click)="cancelLesson()" class="btn btn-secondary ml-3 col-lg-2"><i class="fa fa-times"></i> Renunta</button>
         <p class="errorText col-lg-6">{{errorText}}</p>
       </div>
     </div>

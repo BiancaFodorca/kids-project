@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private lsService: LocalStorageService
@@ -37,10 +36,11 @@ export class LoginComponent implements OnInit {
   doLogin(values: any): void {
     if (this.login_Form.valid) {
       this.authService.login(values).subscribe(resp => {
-        this.lsService.set('uRole', resp._body);
-        if (resp._body === '1') {
+        const response = JSON.parse((<any>resp)._body);
+        this.lsService.set('uRole', response);
+        if (response === 1) {
           this.router.navigate(['/teacher']);
-        } else if ((resp._body = '2')) {
+        } else if (response === 2) {
           this.router.navigate(['/student']);
         }
       });

@@ -12,9 +12,10 @@ import { TeacherModule } from './teacher/teacher.module';
 import { StudentModule } from './student/student.module';
 import { AuthModule } from './auth/auth.module';
 import { LoginComponent } from './auth/login/login.component';
-import { DictionaryService } from './dictionary.service';
+import { SmartKidsService } from './smart-kids.service';
 import { AuthService } from './auth/auth.service';
-import { GeneralBookService } from './shared/services/books/book-service.service';
+import { TodayImportanceService } from './shared/services/today-importance/today-importance-service.service';
+import { RiddleService } from './shared/services/riddle/riddle.service';
 import { SharedModule } from './shared/shared.module';
 import { ResponsesService } from './shared/services/responses/responses.service';
 import { LocalStorageService } from './shared/services/localStorage/local-storage.service';
@@ -70,9 +71,10 @@ const routes: Routes = [
   providers: [
     AuthService,
     LocalStorageService,
-    DictionaryService,
+    SmartKidsService,
     ResponsesService,
-    GeneralBookService,
+    TodayImportanceService,
+    RiddleService,
     QuestionService,
     UsersService,
     EmotionsService,

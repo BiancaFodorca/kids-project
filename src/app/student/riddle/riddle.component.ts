@@ -3,6 +3,7 @@ import { UploadPhotoService } from '../../shared/services/upload-photo/upload-ph
 import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 import { NotificationsService } from 'angular2-notifications';
 import { QuestionService } from '../../shared/services/questions/question.service';
+import { RiddleService } from '../../shared/services/riddle/riddle.service';
 
 @Component({
   selector: 'app-riddle',
@@ -35,20 +36,19 @@ export class RiddleComponent implements OnInit {
     private uploadImgService: UploadPhotoService,
     private lsService: LocalStorageService,
     private _service: NotificationsService,
-    private questionService: QuestionService
+    private riddleService: RiddleService
   ) {
-    this.getBookId();
-    this.getQuestionSentence();
+    this.getRiddle();
   }
 
   ngOnInit() {}
 
-  getQuestionSentence() {
-    // this.questionService
-    //   .getQuestionByExerciseNumber(this.exerciceNumber)
-    //   .subscribe(resp => {
-    //     // this.question.text = JSON.parse(resp._body).question;
-    //   });
+  getRiddle() {
+    this.riddleService.getAll().subscribe(resp => {
+      const response = JSON.parse((<any>resp)._body);
+      
+      this.riddle = response[response.length - 1];
+    });
   }
 
   handleFileInput(event) {
@@ -59,13 +59,6 @@ export class RiddleComponent implements OnInit {
       reader.onload = () => {
         this.fileToUpload = file;
       };
-    }
-  }
-
-  getBookId() {
-    this.bookId = this.lsService.get('bookId');
-    if (this.bookId) {
-      this.noSelectedBook = false;
     }
   }
 

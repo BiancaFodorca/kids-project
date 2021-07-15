@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../../shared/services/questions/question.service';
 import { NotificationsService } from 'angular2-notifications';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PresenceService } from '../../shared/services/presence/presence.service';
@@ -50,7 +49,7 @@ export class QuestionsComponent implements OnInit {
 
   getVideo() {
     this.videoService.getAllVideos().subscribe(resp => {
-      const response = JSON.parse(resp._body);
+      const response = JSON.parse((<any>resp)._body);
       
       this.videoUrl = response[response.length - 1].videoUrl;
       this.videoId = response[response.length - 1].id;
@@ -59,9 +58,8 @@ export class QuestionsComponent implements OnInit {
 
   getCurrentNumberOfKids() {
     this.presenceService.getLastNumberOfKids().subscribe(resp => {
-      console.log(resp);
-      this.number.numberOfKids = JSON.parse(resp._body).numar;
-      this.number.id = JSON.parse(resp._body).id;
+      this.number.numberOfKids = JSON.parse((<any>resp)._body).numar;
+      this.number.id = JSON.parse((<any>resp)._body).id;
     });
   }
 

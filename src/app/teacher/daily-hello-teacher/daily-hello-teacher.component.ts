@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from 'angular2-notifications';
 import { DailyHelloService } from '../../shared/services/daily-hello/daily-hello.service';
-import { LocalStorageService } from '../../shared/services/localStorage/local-storage.service';
 
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.css']
+  selector: 'app-daily-hello-teacher',
+  templateUrl: './daily-hello-teacher.component.html',
+  styleUrls: ['./daily-hello-teacher.component.css']
 })
-export class StatisticsComponent implements OnInit {
+export class DailyHelloTeacherComponent implements OnInit {
   options = {
     timeOut: 5000,
     showProgressBar: true,
@@ -16,12 +15,9 @@ export class StatisticsComponent implements OnInit {
     clickToClose: false,
     maxLength: 10
   };
-  typesOfHello = [
-    // // poezie
-    // //cantecel
-  ];
+  typesOfHello = [];
 
-  constructor(private dailyHelloService: DailyHelloService, private lsService: LocalStorageService, private _service: NotificationsService,) {
+  constructor(private dailyHelloService: DailyHelloService, private _service: NotificationsService,) {
     this.getAllTypesOfHello();
    }
 
@@ -30,7 +26,7 @@ export class StatisticsComponent implements OnInit {
 
   getAllTypesOfHello() {
     this.dailyHelloService.getAllTypesOfHello().subscribe(resp => {
-      this.typesOfHello = JSON.parse(resp._body);
+      this.typesOfHello = JSON.parse((<any>resp)._body);
     });
   }
 
@@ -44,7 +40,6 @@ export class StatisticsComponent implements OnInit {
     const id = this.typesOfHello[index].id;
 
     this.dailyHelloService.updateExistingHelloType(id, data).subscribe(resp => {
-      console.log(resp._body);
       this.openNotification("success");
     }, error => {
       console.log("error", error);

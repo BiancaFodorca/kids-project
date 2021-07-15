@@ -5,14 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { TeacherComponent } from './teacher.component';
 import { DashboardTeacherComponent } from './dashboard-teacher/dashboard-teacher.component';
 import { QuestionsComponent } from './questions/questions.component';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { DailyHelloTeacherComponent } from './daily-hello-teacher/daily-hello-teacher.component';
 import { NavBarTeacherComponent } from './nav-bar-teacher/nav-bar-teacher.component';
 import { AboutTeacherComponent } from './about-teacher/about-teacher.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { DictionaryComponent } from './dictionary/dictionary.component';
+import { SmartKidsTeacherComponent } from './dictionary/smart-kids-teacher.component';
 import { NgbPaginationModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteWordComponent } from './dictionary/delete-word/delete-word.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ImportantDayComponent } from './important-day/important-day.component';
@@ -26,8 +25,8 @@ const routes: Routes = [
       { path: 'dashboard', component: AboutTeacherComponent },
       { path: 'upload', component: UploadBookComponent },
       { path: 'questions', component: QuestionsComponent },
-      { path: 'statistics', component: StatisticsComponent },
-      { path: 'dictionary', component: DictionaryComponent },
+      { path: 'daily-hello-teacher', component: DailyHelloTeacherComponent },
+      { path: 'smart-kids-teacher', component: SmartKidsTeacherComponent },
       { path: 'important-day', component: ImportantDayComponent },
       { path: 'newaccount', component: CreateAccountComponent }
     ]
@@ -50,15 +49,14 @@ const routes: Routes = [
     TeacherComponent,
     DashboardTeacherComponent,
     QuestionsComponent,
-    StatisticsComponent,
+    DailyHelloTeacherComponent,
     NavBarTeacherComponent,
     AboutTeacherComponent,
     CreateAccountComponent,
-    DictionaryComponent,
-    DeleteWordComponent,
+    SmartKidsTeacherComponent,
     ImportantDayComponent
   ],
   exports: [RouterModule],
-  entryComponents: [DeleteWordComponent]
+  entryComponents: []
 })
 export class TeacherModule {}

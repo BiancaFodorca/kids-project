@@ -12,7 +12,7 @@ export class VideoComponent implements OnInit {
   question = {
     text: 'Vizionati cu atentie!'
   };
-  videoUrl = ""; // https://www.youtube.com/embed/zO07amDIYDU
+  videoUrl = "";
   info =
     'Materialele video sunt extrem de atractive pentru cei mici, dezvoltandu-le nu doar vocabularul, ci si creativitatea. Insa in calitate de cadre didactice sau de parinti, trebuie sa supraveghem cu atentie activitatea celor mici in mediul online, astfel incat acestia sa culeaga doar informatiile potrivite vartei lor.';
   options = {
@@ -35,10 +35,9 @@ export class VideoComponent implements OnInit {
 
   getVideo() {
     this.videoService.getAllVideos().subscribe(resp => {
-      const response = JSON.parse(resp._body);
+      const response = JSON.parse((<any>resp)._body);
       
       this.videoUrl = response[response.length - 1].videoUrl;
-      console.log(response[response.length - 1].videoUrl);
     });
   }
 

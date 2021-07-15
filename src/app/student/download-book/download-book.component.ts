@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GeneralBookService } from "../../shared/services/books/book-service.service";
+import { TodayImportanceService } from "../../shared/services/today-importance/today-importance-service.service";
 import { saveAs as importedSaveAs } from "file-saver";
 import { LocalStorageService } from "../../shared/services/localStorage/local-storage.service";
 
@@ -15,7 +15,7 @@ export class DownloadBookComponent implements OnInit {
   selectedBook;
 
   constructor(
-    private bookService: GeneralBookService,
+    private bookService: TodayImportanceService,
     private locaStorageService: LocalStorageService
   ) {
     this.getAllBooks();
@@ -25,15 +25,15 @@ export class DownloadBookComponent implements OnInit {
   ngOnInit() {}
 
   getAllBooks() {
-    this.bookService.getAllByType("carte").subscribe(response => {
-      // this.bookList = JSON.parse(response._body);
-    });
+    // this.bookService.getAllByType("carte").subscribe(response => {
+    //   // this.bookList = JSON.parse((<any>resp)._body);
+    // });
   }
 
   getAllAttachements() {
-    this.bookService.getAllByType("atasament").subscribe(response => {
-      // this.linkAttachmentsList = JSON.parse(response._body);
-    });
+    // this.bookService.getAllByType("atasament").subscribe(response => {
+    //   // this.linkAttachmentsList = JSON.parse((<any>resp)._body);
+    // });
   }
 
   selectBookFromList(event) {

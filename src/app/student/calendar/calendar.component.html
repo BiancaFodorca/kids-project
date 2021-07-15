@@ -5,16 +5,16 @@
     <div class="col-2">
       <h5>Anotimp</h5>
       <div class="col-3" *ngFor="let season of seasons; let i=index;">
-        <div class="seasonContainer">
+        <div class="seasonContainer" (click)="selectSeason(season, i)">
           <i>{{season.name}}</i>
-          <img class="seasonCard" [src]="season.imgPath" alt="Avatar" style="width:200px;height:200px;">
+          <img class="seasonCard"  [ngClass]="{'activeCard': season.isSelected === true }" [src]="season.imgPath" alt="Avatar" style="width:200px;height:200px;">
         </div>
       </div>
     </div>
     <div class="col-2">
       <h5>Luna</h5>
       <div *ngFor="let month of months; let i=index;">
-        <div class="monthCard monthColoredCard-{{i%3}}">
+        <div class="monthCard monthColoredCard-{{i%3}}" (click)="selectMonth(month, i)" [ngClass]="{'boldText': month.isSelected === true }">
           <p  class="monthIcon" [innerHTML]="month.iconCode"></p>
           <i>{{month.name}}</i></div>
       </div>
@@ -22,25 +22,25 @@
     <div class="col-8">
       <h5>Ziua caledaristica</h5>
       <div class="row">
-        <div class="dayCard" *ngFor="let dayOfMonth of daysOfMonth; let i=index;">
-          <b>{{dayOfMonth}}</b>
+        <div class="dayCard" *ngFor="let dayOfMonth of daysOfMonth; let i=index;" (click)="selectDayOfTheMonth(dayOfMonth)">
+          <b [ngClass]="{'boldDayContainer': dayOfMonth.isSelected === true }">{{dayOfMonth.id}}</b>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-4">
           <h5>Ziua saptamanii</h5>
-          <div class="dayOfWeekCard" *ngFor="let dayOfWeek of daysOfWeek; let i=index;">
-           <b class="dayOfWeekColored-{{i%3}}">
+          <div class="dayOfWeekCard" *ngFor="let dayOfWeek of daysOfWeek; let i=index;" (click)="selectDayOfTheWeek(dayOfWeek)">
+           <b class="dayOfWeekColored-{{i%3}}" [ngClass]="{'boldText': dayOfWeek.isSelected === true }">
             <p  class="monthIcon" [innerHTML]="dayOfWeek.icon">&nbsp;&nbsp;</p>{{dayOfWeek.name}}</b>
           </div>
         </div>
         <div class="col-8">
           <h5>Vremea</h5>
           <span class="col-3" *ngFor="let weatherType of weatherTypes; let i=index;">
-            <div class="weatherContainer">
+            <div class="weatherContainer" (click)="selectWeather(weatherType, i)">
               <i>{{weatherType.name}}</i>
-              <img class="weatherCard" [src]="weatherType.imgPath" [alt]="weatherType.name" style="width:200px;height:200px;">
+              <img class="weatherCard" [ngClass]="{'activeCard': weatherType.isSelected === true }"  [src]="weatherType.imgPath" [alt]="weatherType.name" style="width:200px;height:200px;">
             </div>
 
           </span>
@@ -50,11 +50,4 @@
 
   </div>
 </div>
-
-<!-- <div class="col-3">
-  <div class="row">
-          <button class="btn btn-warning" (click)="openFormModal(null)">Adauga cuvant</button>
-  </div>
-
-</div> -->
 <simple-notifications></simple-notifications>

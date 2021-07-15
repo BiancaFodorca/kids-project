@@ -37,7 +37,7 @@ export class DailyHelloComponent implements OnInit {
 
   getSelectedTypesOfHello() {
     this.dailyHelloService.getAllSelectedTypesOfHello().subscribe(resp => {
-      this.typesOfHello = JSON.parse(resp._body);
+      this.typesOfHello = JSON.parse((<any>resp)._body);
     });
   }
 
